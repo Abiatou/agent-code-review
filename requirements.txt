@@ -1,0 +1,11 @@
+# Interactions avec l'API GitHub
+pygithub>=2.1.1
+
+# Framework d'orchestration IA et validation de schémas
+langchain>=0.1.0
+langchain-community>=0.0.10
+langchain-openai>=0.0.2
+pydantic>=2.0.0
+
+# Gestion des variables d'environnement
+python-dotenv>=1.0.0
