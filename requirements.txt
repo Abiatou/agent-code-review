@@ -9,3 +9,4 @@ pydantic>=2.0.0
 
 # Gestion des variables d'environnement
 python-dotenv>=1.0.0
+langchain-groq
