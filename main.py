@@ -1,12 +1,16 @@
 import sys
 from src.git_client import GitClient
 from src.llm_engine import LLMEngine
+from src.filter import filter_issues, load_config
 
 def run_agent(repo_name: str, pr_number: int):
     print(f"🚀 Lancement de la revue de code sur {repo_name} (PR #{pr_number})...")
     
     git_client = GitClient()
     llm_engine = LLMEngine()
+    
+    # Chargement unique de la configuration du filtrage (.ai-review.yml)
+    config = load_config(".ai-review.yml")
 
     # 1. Extraction du diff
     diffs = git_client.get_pr_diff(repo_name, pr_number)
@@ -27,9 +31,9 @@ def run_agent(repo_name: str, pr_number: int):
         full_report += f"### 📄 Fichier : `{filename}` (Note : {result.score}/10)\n"
         full_report += f"**Résumé :** {result.summary}\n\n"
 
-        # Filtrage des faux positifs
-        real_issues = [issue for issue in result.issues if not issue.is_false_positive]
-
+        # Application du module de filtrage indépendant (Résolution du blocage B3)
+        real_issues = filter_issues(result.issues, config)
+    
         if real_issues:
             full_report += "#### ⚠️ Problèmes identifiés :\n"
             for issue in real_issues:

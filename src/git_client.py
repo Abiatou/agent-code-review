@@ -1,7 +1,7 @@
 import os
 from github import Github
 from dotenv import load_dotenv
-
+from github import Github, Auth
 # Charger les variables du fichier .env
 load_dotenv()
 
@@ -10,7 +10,8 @@ class GitClient:
         token = os.getenv("GITHUB_TOKEN")
         if not token:
             raise ValueError("Erreur : GITHUB_TOKEN est absent du fichier .env")
-        self.client = Github(token)
+        # Utilisation de la nouvelle syntaxe recommandée par PyGithub :
+        self.client = Github(auth=Auth.Token(token))
 
     def get_pr_diff(self, repo_name: str, pr_number: int):
         """Récupère la liste des fichiers modifiés et leurs patchs (diffs)."""
