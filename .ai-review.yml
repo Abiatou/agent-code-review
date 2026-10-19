@@ -2,5 +2,3 @@
 min_severity: "MEDIUM"
 ignore_categories:
   - "style"
-  - "style_code"
-  - "formatting"

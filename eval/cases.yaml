@@ -1,0 +1,30 @@
+# eval/cases.yaml
+- file: "eval/cases/sqli_fstring.py"
+  type: "security"
+  expected: [{category: "SECURITY", line: 3, severity: "CRITICAL"}]
+
+- file: "eval/cases/xss_jinja.py"
+  type: "security"
+  expected: [{category: "SECURITY", line: 8, severity: "HIGH"}]
+
+- file: "eval/cases/hardcoded_secret.py"
+  type: "security"
+  expected: [{category: "SECURITY", line: 2, severity: "CRITICAL"}]
+
+- file: "eval/cases/path_traversal.py"
+  type: "security"
+  expected: [{category: "SECURITY", line: 5, severity: "HIGH"}]
+
+- file: "eval/cases/command_injection.py"
+  type: "security"
+  expected: [{category: "SECURITY", line: 4, severity: "CRITICAL"}]
+
+- file: "eval/cases/safe_param_query.py"
+  type: "clean"
+  expected: [] # Code sain (Test de Faux Positifs)
+
+- file: "eval/cases/safe_auth_handler.py"
+  type: "clean"
+  expected: [] # Code sain
+
+# ... [Total : 25 fichiers de test : 15 vulnérables, 10 sains]
