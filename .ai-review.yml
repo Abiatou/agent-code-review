@@ -1,0 +1,4 @@
+# Configuration du module de filtrage indépendant
+min_severity: "MEDIUM"
+ignore_categories:
+  - "style"
